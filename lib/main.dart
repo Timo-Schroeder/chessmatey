@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: yaru.theme,
         darkTheme: yaru.darkTheme,
+        themeMode: ThemeMode.light,
         home: const _Home(),
       );
     });
