@@ -1,9 +1,14 @@
+import 'package:chessmatey/features/tournament-selection/data/datasources/local_datasources/tournament_datasource.dart';
 import 'package:flutter/material.dart';
+import 'package:ubuntu_service/ubuntu_service.dart';
 import 'package:yaru/yaru.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
 Future<void> main() async {
   await YaruWindowTitleBar.ensureInitialized();
+
+  registerService<TournamentDatasource>(() => TournamentDatasource());
+
   runApp(const MyApp());
 }
 
