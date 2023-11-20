@@ -15,11 +15,25 @@ dependencies:
   yaru: ^1.1.0
   yaru_widgets: ^3.2.2
   handy_window: ^0.3.1
+  freezed_annotation: ^2.4.1
+  fast_immutable_collections: ^9.1.6
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1
+  path_provider: ^2.1.1
+  ubuntu_service: ^0.2.4
+  hooks_riverpod: ^2.4.6
+  flutter_hooks: ^0.20.3
+  riverpod_annotation: ^2.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
+  build_runner: ^2.4.6
+  freezed: ^2.4.5
+  isar_generator: ^3.1.0+1
+  riverpod_generator: ^2.3.6
+  custom_lint: ^0.5.6
 
 flutter:
   uses-material-design: true

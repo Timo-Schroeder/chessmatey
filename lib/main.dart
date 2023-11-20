@@ -1,10 +1,19 @@
+import 'package:chessmatey/features/tournament-selection/data/datasources/local_datasources/tournament_datasource.dart';
+import 'package:chessmatey/features/tournament-selection/presentation/pages/tournament_selection_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:ubuntu_service/ubuntu_service.dart';
 import 'package:yaru/yaru.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
 Future<void> main() async {
   await YaruWindowTitleBar.ensureInitialized();
-  runApp(const MyApp());
+
+  registerService<TournamentDatasource>(() => TournamentDatasource());
+
+  runApp(const ProviderScope(
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -17,25 +26,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: yaru.theme,
         darkTheme: yaru.darkTheme,
-        home: const _Home(),
+        themeMode: ThemeMode.light,
+        home: const TournamentSelectionScreen(),
       );
     });
-  }
-}
-
-class _Home extends StatelessWidget {
-  const _Home();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const YaruWindowTitleBar(),
-      body: Center(
-        child: Text(
-          'Hello there',
-          style: TextStyle(color: Theme.of(context).primaryColor),
-        ),
-      ),
-    );
   }
 }
