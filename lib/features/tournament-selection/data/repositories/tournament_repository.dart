@@ -2,7 +2,11 @@ import 'package:chessmatey/features/tournament-selection/data/datasources/local_
 import 'package:chessmatey/features/tournament-selection/data/models/tournament_dto.dart';
 import 'package:chessmatey/features/tournament-selection/domain/tournament.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:ubuntu_service/ubuntu_service.dart';
+
+part 'tournament_repository.g.dart';
 
 abstract class TournamentRepository {
   Future<IList<Tournament>> getAllTournaments();
@@ -20,7 +24,7 @@ class TournamentRepositoryImpl implements TournamentRepository {
   @override
   Future<IList<Tournament>> getAllTournaments() async {
     return await _tournamentDatasource.getTournaments().then((tournaments) {
-      final list = List<Tournament>.empty();
+      final list = List<Tournament>.empty(growable: true);
       for (var t in tournaments) {
         list.add(_toTournament(t));
       }
@@ -64,4 +68,9 @@ class TournamentRepositoryImpl implements TournamentRepository {
 
     return dto;
   }
+}
+
+@riverpod
+TournamentRepository tournamentRepository(Ref ref) {
+  return TournamentRepositoryImpl();
 }
