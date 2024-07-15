@@ -1,15 +1,13 @@
-import 'package:chessmatey/features/tournament-selection/data/datasources/local_datasources/tournament_datasource.dart';
-import 'package:chessmatey/features/tournament-selection/presentation/pages/tournament_selection_screen.dart';
+import 'package:chessmatey/src/features/tournament_selection/presentation/tournament_selection_screen.dart';
+import 'package:chessmatey/src/common/util/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:ubuntu_service/ubuntu_service.dart';
 import 'package:yaru/yaru.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
 
 Future<void> main() async {
   await YaruWindowTitleBar.ensureInitialized();
 
-  registerService<TournamentDatasource>(() => TournamentDatasource());
+  await setup();
 
   runApp(const ProviderScope(
     child: MyApp(),
@@ -26,7 +24,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: yaru.theme,
         darkTheme: yaru.darkTheme,
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.light,
         home: const TournamentSelectionScreen(),
       );
     });
